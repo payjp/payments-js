@@ -1,10 +1,12 @@
-import { PayjpElement } from ".";
+import { PayjpElementBase } from ".";
 
-export type PayjpAddressElement = PayjpElement & {}
+export type PayjpAddressElement = PayjpElementBase & {
+  update(options: PayjpAddressElementOptions): void;
+}
 
 export type AddressMode = "shipping" | "billing";
 
-export interface PayjpAddressElementsOptions {
+export interface PayjpAddressElementOptions {
   /**
    * AddressElement で入力する住所の種類を指定します。
    * shipping: 配送先住所

@@ -1,10 +1,12 @@
-import { PayjpElement } from ".";
+import { PayjpElementBase } from ".";
 
-export type PayjpPaymentElement = PayjpElement & {
+export type PayjpPaymentElement = PayjpElementBase & {
   /**
    * PaymentElement をどの支払い手段も選択されていない状態にします。
    */
   collapse(): void;
+
+  update(options: PayjpPaymentElementOptions): void;
 }
 
 export type PaymentElementLayoutTypes = "tab" | "accordion";
@@ -28,7 +30,7 @@ export type PaymentMethodTypes =
   | "card"
   | "paypay"
 
-export interface PayjpPaymentElementsOptions {
+export interface PayjpPaymentElementOptions {
   /**
    * PaymentElement の表示形式を指定します。
    * tab: タブ形式

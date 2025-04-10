@@ -2,6 +2,11 @@ import { PayjpElements } from './elements';
 import * as paymentIntents from './payment-intents';
 import * as setupIntents from './setup-intents';
 
+export * from './elements';
+export * from './element';
+export * from './payment-intents';
+export * from './setup-intents';
+
 export interface PayjpPayments { 
     elements(options?: PayjpElementsOptionsClientSecret): PayjpElements;
 
