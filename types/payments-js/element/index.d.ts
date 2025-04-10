@@ -1,4 +1,10 @@
-export type PayjpElement = {
+import { PayjpAddressElement } from './address';
+import { PayjpPaymentElement } from './payment';
+
+export * from './payment';
+export * from './address';
+
+export type PayjpElementBase = {
   /**
    * Element を DOM にマウントします。
    * @param selector - マウント先のCSSセレクタまたはHTMLElement
@@ -10,3 +16,5 @@ export type PayjpElement = {
    */
   unmount(): void;
 }
+
+export type PayjpElement = PayjpPaymentElement | PayjpAddressElement;
