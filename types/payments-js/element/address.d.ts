@@ -45,6 +45,16 @@ export type PayjpAddressElementOptions = {
     };
     phone?: string | null;
   };
+
+  /**
+   *  電話番号の入力欄を表示するかどうかを指定します。
+   * always: 常に表示します。
+   * auto: 必要がある場合に表示します。
+   * never: 常に表示しません。
+   */
+  fields?: {
+    phone?: 'always' | 'auto' | 'never';
+  },
 }
 
 export type PayjpAddressElementUpdateOptions = Partial<Omit<PayjpAddressElementOptions, "mode" | "autocomplete">>
