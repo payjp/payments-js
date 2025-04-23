@@ -1,12 +1,16 @@
 import { PayjpElementBase } from ".";
 
 export type PayjpAddressElement = PayjpElementBase & {
-  update(options: PayjpAddressElementOptions): void;
+  /**
+   * AddressElement の options を更新します。
+   * @param options
+   */
+  update(options: PayjpAddressElementUpdateOptions): void;
 }
 
 export type AddressMode = "shipping" | "billing";
 
-export interface PayjpAddressElementOptions {
+export type PayjpAddressElementOptions = {
   /**
    * AddressElement で入力する住所の種類を指定します。
    * shipping: 配送先住所
@@ -41,7 +45,19 @@ export interface PayjpAddressElementOptions {
     };
     phone?: string | null;
   };
+
+  /**
+   *  電話番号の入力欄を表示するかどうかを指定します。
+   * always: 常に表示します。
+   * auto: 必要がある場合に表示します。
+   * never: 常に表示しません。
+   */
+  fields?: {
+    phone?: 'always' | 'auto' | 'never';
+  },
 }
+
+export type PayjpAddressElementUpdateOptions = Partial<Omit<PayjpAddressElementOptions, "mode" | "autocomplete">>
 
 export interface PayjpAddressElementGetAddressOption {
     /**

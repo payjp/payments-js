@@ -21,9 +21,30 @@ export interface PayjpPayments {
     }): Promise<setupIntents.SetupIntentResult>;
 }
 
-export interface PayjpElementsOptionsClientSecret {
+export type Locales = 'ja' | 'en'
+
+export type Appearance = {
+  theme: "payjp" | "dark";
+  variables?: {
+    colorPrimary?: string;
+    colorBackground?: string;
+    colorText?: string;
+    colorDanger?: string;
+    fontFamily?: string;
+    fontSizeBase?: string;
+  };
+};
+
+interface PayjpElementsOptionsBase {
+  locale?: Locales;
+  appearance?: Appearance;
+}
+
+export type PayjpElementsOptionsClientSecret = PayjpElementsOptionsBase & {
   clientSecret: string;
 }
+
+export type PayjpElementsUpdateOptions = Partial<PayjpElementsOptionsBase>
 
 export interface PayjpPaymentsConstructor {
   (publicKey: string): PayjpPayments;

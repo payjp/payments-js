@@ -6,7 +6,11 @@ export type PayjpPaymentElement = PayjpElementBase & {
    */
   collapse(): void;
 
-  update(options: PayjpPaymentElementOptions): void;
+  /**
+   * PaymentElement の options を更新します。
+   * @param options 
+   */
+  update(options: PayjpPaymentElementUpdateOptions): void;
 }
 
 export type PaymentElementLayoutTypes = "tab" | "accordion";
@@ -30,7 +34,7 @@ export type PaymentMethodTypes =
   | "card"
   | "paypay"
 
-export interface PayjpPaymentElementOptions {
+export type PayjpPaymentElementOptions = {
   /**
    * PaymentElement の表示形式を指定します。
    * tab: タブ形式
@@ -64,3 +68,5 @@ export interface PayjpPaymentElementOptions {
    */
   paymentMethodOrder?: PaymentMethodTypes[];
 }
+
+export type PayjpPaymentElementUpdateOptions = Partial<Omit<PayjpPaymentElementOptions, "layout">> 
