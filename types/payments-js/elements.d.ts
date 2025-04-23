@@ -1,5 +1,6 @@
 import { PayjpPaymentElement, PayjpPaymentElementOptions } from "./element/payment";
 import { PayjpAddressElement, PayjpAddressElementGetAddressOption, PayjpAddressElementOptions } from "./element/address";
+import { PayjpElementsUpdateOptions } from "..";
 
 export type PayjpElementType = "payment" | "address";
 
@@ -9,4 +10,7 @@ export interface PayjpElements {
 
   create(type: "address", options?: PayjpAddressElementOptions): PayjpAddressElement;
   getElement(elementType: 'address', options: PayjpAddressElementGetAddressOption): PayjpAddressElement | null;
+
+  update(options: PayjpElementsUpdateOptions): void;
+  fetchUpdates(): Promise<void>;
 }
