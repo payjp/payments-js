@@ -1,7 +1,8 @@
 import { PayjpElements } from './elements';
 import * as paymentIntents from './payment-intents';
 import * as setupIntents from './setup-intents';
-
+import { PaymentIntent } from '../api/payment-intents';
+import { SetupIntent } from '../api/setup-intents';
 export * from './elements';
 export * from './element';
 export * from './payment-intents';
@@ -19,6 +20,9 @@ export interface PayjpPayments {
       elements: PayjpElements;
       confirmParams: setupIntents.ConfirmSetupParams;
     }): Promise<setupIntents.SetupIntentResult>;
+
+    retrievePaymentIntent(clientSecret: string): Promise<PaymentIntent>
+    retrieveSetupIntent(clientSecret: string): Promise<SetupIntent>
 }
 
 export type Locales = 'ja' | 'en'
