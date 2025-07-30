@@ -115,4 +115,4 @@ export type PaymentIntentStatus =
   | "requires_payment_method"
   | "succeeded";
 
-export type CaptureMethod = "automatic" | "automatic_async" | "manual";
+export type CaptureMethod = "automatic" | "manual";
