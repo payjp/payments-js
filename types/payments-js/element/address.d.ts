@@ -1,12 +1,55 @@
 import { PayjpElementBase } from ".";
 
+export type Address = {
+  line1: string;
+  line2: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
+};
+
 export type PayjpAddressElement = PayjpElementBase & {
   /**
    * AddressElement の options を更新します。
    * @param options
    */
   update(options: PayjpAddressElementUpdateOptions): void;
-}
+
+  /**
+   * AddressElement の状態が変化したときに発火するイベントハンドラを登録します。
+   */
+  on(
+    event: "change",
+    handler: (event: {
+      elementType: "address";
+      elementMode: AddressMode;
+      empty: boolean;
+      complete: boolean;
+      value: { name: string; address: Address; phone: string };
+    }) => void
+  ): void;
+  on(event: "ready", handler: () => void): void;
+  on(event: "focus", handler: () => void): void;
+  on(event: "blur", handler: () => void): void;
+
+  /**
+   * AddressElement の状態が変化したときに発火するイベントハンドラを解除します。
+   */
+  off(
+    event: "change",
+    handler: (event: {
+      elementType: "address";
+      elementMode: AddressMode;
+      empty: boolean;
+      complete: boolean;
+      value: { name: string; address: Address; phone: string };
+    }) => void
+  ): void;
+  off(event: "ready", handler: () => void): void;
+  off(event: "focus", handler: () => void): void;
+  off(event: "blur", handler: () => void): void;
+};
 
 export type AddressMode = "shipping" | "billing";
 
