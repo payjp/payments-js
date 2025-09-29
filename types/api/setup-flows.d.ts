@@ -1,15 +1,15 @@
-export type SetupIntent = {
+export type SetupFlow = {
     /**
      * Id
-     * @description 支払い方法設定インテントID
+     * @description 支払い方法設定フローID
      */
     id: string;
     /**
      * Object
-     * @default setup_intent
+     * @default setup_flow
      * @constant
      */
-    object: "setup_intent";
+    object: "setup_flow";
     /**
      * Created At
      * Format: date-time
@@ -66,10 +66,10 @@ export type SetupIntent = {
      */
     payment_method_types: string[];
     /** @description 支払いステータス */
-    status: SetupIntentStatus;
+    status: SetupFlowStatus;
 };
 
-export type SetupIntentStatus =
+export type SetupFlowStatus =
   | "canceled"
   | "processing"
   | "requires_action"

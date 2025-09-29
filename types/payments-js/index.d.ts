@@ -1,28 +1,28 @@
 import { PayjpElements } from './elements';
-import * as paymentIntents from './payment-intents';
-import * as setupIntents from './setup-intents';
-import { PaymentIntent } from '../api/payment-intents';
-import { SetupIntent } from '../api/setup-intents';
+import * as paymentFlows from './payment-flows';
+import * as setupFlows from './setup-flows';
+import { PaymentFlow } from '../api/payment-flows';
+import { SetupFlow } from '../api/setup-flows';
 export * from './elements';
 export * from './element';
-export * from './payment-intents';
-export * from './setup-intents';
+export * from './payment-flows';
+export * from './setup-flows';
 
 export interface PayjpPayments { 
     elements(options?: PayjpElementsOptionsClientSecret): PayjpElements;
 
     confirmPayment(options: {
       elements: PayjpElements;
-      confirmParams: paymentIntents.ConfirmPaymentParams;
-    }): Promise<paymentIntents.PaymentIntentResult>;
+      confirmParams: paymentFlows.ConfirmPaymentParams;
+    }): Promise<paymentFlows.PaymentFlowResult>;
 
     confirmSetup(options: {
       elements: PayjpElements;
-      confirmParams: setupIntents.ConfirmSetupParams;
-    }): Promise<setupIntents.SetupIntentResult>;
+      confirmParams: setupFlows.ConfirmSetupParams;
+    }): Promise<setupFlows.SetupFlowResult>;
 
-    retrievePaymentIntent(clientSecret: string): Promise<PaymentIntent>
-    retrieveSetupIntent(clientSecret: string): Promise<SetupIntent>
+    retrievePaymentFlow(clientSecret: string): Promise<PaymentFlow>
+    retrieveSetupFlow(clientSecret: string): Promise<SetupFlow>
 }
 
 export type Locales = 'ja' | 'en'
