@@ -19,28 +19,32 @@ import { loadPayments } from '@payjp/payments-js'
 const payments = await loadPayments('pk_test_0383a1b8f91e8a6e3ea0e2a9')
 ```
 
-### 2. Elements の生成
+### 2. Widgets の生成
 
 ```typescript
-const elements = payments.elements({ clientSecret })
+const widgets = payments.widgets({ clientSecret })
 ```
 
-### 3. Element の生成
+### 3. Form の生成
 
 ```typescript
-const paymentElement = elements.create('payment')
-const billingAddressElement = elements.create('address', { type: 'billing' })
+const paymentForm = widgets.createForm('payment')
+const billingAddressForm = widgets.createForm('address', { mode: 'billing' })
 ```
 
-### 4. Element のマウント
+### 4. Form のマウント
 
 ```typescript
-paymentElement.mount('#payment-element')
-billingAddressElement.mount('#billing-address-element')
+paymentForm.mount('#payment-form')
+billingAddressForm.mount('#billing-address-form')
 ```
 
-### 5. 決済インテント、決済情報登録インテントのConfirm
+### 5. PaymentFlow、SetupFlowのConfirm
 
 ```typescript
-const result = await payments.confirmPayment({ elements, confirmParams: { return_url: 'https://example.com/return_url' } })
+const result = await payments.confirmPayment({ widgets, confirmParams: { return_url: 'https://example.com/return_url' } })
+```
+
+```typescript
+const result = await payments.confirmSetup({ widgets, confirmParams: { return_url: 'https://example.com/return_url' } })
 ```

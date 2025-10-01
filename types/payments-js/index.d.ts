@@ -1,23 +1,23 @@
-import { PayjpElements } from './elements';
+import { PayjpWidgets } from './widgets';
 import * as paymentFlows from './payment-flows';
 import * as setupFlows from './setup-flows';
 import { PaymentFlow } from '../api/payment-flows';
 import { SetupFlow } from '../api/setup-flows';
-export * from './elements';
-export * from './element';
+export * from './widgets';
+export * from './form';
 export * from './payment-flows';
 export * from './setup-flows';
 
-export interface PayjpPayments { 
-    elements(options?: PayjpElementsOptionsClientSecret): PayjpElements;
+export interface PayjpPayments {
+    widgets(options?: PayjpWidgetsOptionsClientSecret): PayjpWidgets;
 
     confirmPayment(options: {
-      elements: PayjpElements;
+      widgets: PayjpWidgets;
       confirmParams: paymentFlows.ConfirmPaymentParams;
     }): Promise<paymentFlows.PaymentFlowResult>;
 
     confirmSetup(options: {
-      elements: PayjpElements;
+      widgets: PayjpWidgets;
       confirmParams: setupFlows.ConfirmSetupParams;
     }): Promise<setupFlows.SetupFlowResult>;
 
@@ -39,16 +39,16 @@ export type Appearance = {
   };
 };
 
-interface PayjpElementsOptionsBase {
+interface PayjpWidgetsOptionsBase {
   locale?: Locales;
   appearance?: Appearance;
 }
 
-export type PayjpElementsOptionsClientSecret = PayjpElementsOptionsBase & {
+export type PayjpWidgetsOptionsClientSecret = PayjpWidgetsOptionsBase & {
   clientSecret: string;
 }
 
-export type PayjpElementsUpdateOptions = Partial<PayjpElementsOptionsBase>
+export type PayjpWidgetsUpdateOptions = Partial<PayjpWidgetsOptionsBase>
 
 export interface PayjpPaymentsConstructor {
   (publicKey: string): PayjpPayments;
