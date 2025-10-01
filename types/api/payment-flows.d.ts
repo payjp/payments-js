@@ -1,15 +1,15 @@
-export type PaymentIntent = {
+export type PaymentFlow = {
     /**
     * Id
-     * @description 支払いインテントID
+     * @description 支払いフローID
      */
     id: string;
     /**
      * Object
-     * @default payment_intent
+     * @default payment_flow
      * @constant
      */
-    object: "payment_intent";
+    object: "payment_flow";
     /**
      * Created At
      * Format: date-time
@@ -91,7 +91,7 @@ export type PaymentIntent = {
      */
     receipt_email?: string | null;
     /** @description 支払いステータス */
-    status: PaymentIntentStatus;
+    status: PaymentFlowStatus;
     /**
      * Next Action
      * @description 次のアクション
@@ -106,7 +106,7 @@ export type PaymentIntent = {
     capture_method: CaptureMethod;
 };
 
-export type PaymentIntentStatus =
+export type PaymentFlowStatus =
   | "canceled"
   | "processing"
   | "requires_action"

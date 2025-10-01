@@ -1,18 +1,18 @@
-import { PayjpElementBase } from ".";
+import { PayjpFormBase } from ".";
 
-export type PayjpAddressElement = PayjpElementBase & {
+export type PayjpAddressForm = PayjpFormBase & {
   /**
-   * AddressElement の options を更新します。
+   * AddressForm の options を更新します。
    * @param options
    */
-  update(options: PayjpAddressElementUpdateOptions): void;
+  update(options: PayjpAddressFormUpdateOptions): void;
 }
 
 export type AddressMode = "shipping" | "billing";
 
-export type PayjpAddressElementOptions = {
+export type PayjpAddressFormOptions = {
   /**
-   * AddressElement で入力する住所の種類を指定します。
+   * AddressForm で入力する住所の種類を指定します。
    * shipping: 配送先住所
    * billing: 請求先住所
    */
@@ -57,11 +57,11 @@ export type PayjpAddressElementOptions = {
   },
 }
 
-export type PayjpAddressElementUpdateOptions = Partial<Omit<PayjpAddressElementOptions, "mode" | "autocomplete">>
+export type PayjpAddressFormUpdateOptions = Partial<Omit<PayjpAddressFormOptions, "mode" | "autocomplete">>
 
-export interface PayjpAddressElementGetAddressOption {
+export interface PayjpAddressFormGetAddressOption {
     /**
-     * 取得するAddressElementの種類を指定します。
+     * 取得するAddressFormの種類を指定します。
      */
     mode: AddressMode;
 }

@@ -1,2 +1,2 @@
-export * from "./payment-intents"
-export * from "./setup-intents"
+export * from "./payment-flows"
+export * from "./setup-flows"
