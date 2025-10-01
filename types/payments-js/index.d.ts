@@ -11,16 +11,6 @@ export * from './setup-flows';
 export interface PayjpPayments {
     widgets(options?: PayjpWidgetsOptionsClientSecret): PayjpWidgets;
 
-    confirmPayment(options: {
-      widgets: PayjpWidgets;
-      confirmParams: paymentFlows.ConfirmPaymentParams;
-    }): Promise<paymentFlows.PaymentFlowResult>;
-
-    confirmSetup(options: {
-      widgets: PayjpWidgets;
-      confirmParams: setupFlows.ConfirmSetupParams;
-    }): Promise<setupFlows.SetupFlowResult>;
-
     retrievePaymentFlow(clientSecret: string): Promise<PaymentFlow>
     retrieveSetupFlow(clientSecret: string): Promise<SetupFlow>
 }

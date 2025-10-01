@@ -42,9 +42,9 @@ billingAddressForm.mount('#billing-address-form')
 ### 5. PaymentFlow、SetupFlowのConfirm
 
 ```typescript
-const result = await payments.confirmPayment({ widgets, confirmParams: { return_url: 'https://example.com/return_url' } })
+const result = await widgets.confirmPayment({ return_url: 'https://example.com/return_url' })
 ```
 
 ```typescript
-const result = await payments.confirmSetup({ widgets, confirmParams: { return_url: 'https://example.com/return_url' } })
+const result = await widgets.confirmSetup({ return_url: 'https://example.com/return_url' })
 ```
