@@ -11,6 +11,38 @@ export type PayjpPaymentForm = PayjpFormBase & {
    * @param options
    */
   update(options: PayjpPaymentFormUpdateOptions): void;
+
+  /**
+   * PaymentElement の状態が変化したときに発火するイベントハンドラを登録します。
+   */
+  on(
+    event: "change",
+    handler: (event: {
+      elementType: "payment";
+      empty: boolean;
+      complete: boolean;
+      value: { type: PaymentMethodTypes | null };
+    }) => void
+  ): void;
+  on(event: "ready", handler: () => void): void;
+  on(event: "focus", handler: () => void): void;
+  on(event: "blur", handler: () => void): void;
+
+  /**
+   * PaymentElement の状態が変化したときに発火するイベントハンドラを解除します。
+   */
+  off(
+    event: "change",
+    handler: (event: {
+      elementType: "payment";
+      empty: boolean;
+      complete: boolean;
+      value: { type: PaymentMethodTypes | null };
+    }) => void
+  ): void;
+  off(event: "ready", handler: () => void): void;
+  off(event: "focus", handler: () => void): void;
+  off(event: "blur", handler: () => void): void;
 }
 
 export type PaymentFormLayoutTypes = "tab" | "accordion";
@@ -33,6 +65,7 @@ export type PaymentFormFieldBillingDetailsOptions =
 export type PaymentMethodTypes =
   | "card"
   | "paypay"
+  | "apple_pay"
 
 export type PayjpPaymentFormOptions = {
   /**
