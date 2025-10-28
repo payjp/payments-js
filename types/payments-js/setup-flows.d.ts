@@ -1,6 +1,6 @@
 import { PayjpPaymentsError } from '..';
 
-export type ConfirmPaymentParams = {
+export type ConfirmSetupParams = {
     return_url: string;
     payment_method_data?: {
         billing_details?: {
@@ -11,4 +11,4 @@ export type ConfirmPaymentParams = {
     };
 }
 
-export type PaymentIntentResult = { error: PayjpPaymentsError };
+export type SetupFlowResult = { error: PayjpPaymentsError };
