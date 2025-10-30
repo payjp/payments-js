@@ -26,8 +26,8 @@
   "author": "PAY.JP <support@pay.jp> (https://pay.jp)",
   "license": "MIT",
   "publishConfig": {
-    "access": "restricted",
-    "registry": "https://npm.pkg.github.com/payjp"
+    "access": "public",
+    "provenance": true
   },
   "devDependencies": {
     "typescript": "~5.7.3",
