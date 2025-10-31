@@ -1,6 +1,6 @@
 {
   "name": "@payjp/payments-js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "helper module for PAY.JP payments.js",
   "type": "module",
   "files": [
