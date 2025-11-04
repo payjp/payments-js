@@ -1,5 +1,7 @@
 # @payjp/payments-js: ESModules JavaScript SDK library for PAY.JP v2 API
 
+[![npm version](https://img.shields.io/npm/v/@payjp/payments-js.svg)](https://www.npmjs.com/package/@payjp/payments-js)
+
 @payjp/payments-js は JavaScript / TypeScript で payments.js を利用するためのラッパーライブラリです。
 payments.js のロードのサポートや型定義されたヘルパーメソッドを提供します。
 
