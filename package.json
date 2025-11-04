@@ -5,7 +5,7 @@
   "type": "module",
   "files": [
     "dist",
-    "./types/index.d.ts"
+    "types"
   ],
   "module": "./dist/payments-js.js",
   "types": "./types/index.d.ts",
