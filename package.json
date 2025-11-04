@@ -1,11 +1,11 @@
 {
   "name": "@payjp/payments-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "helper module for PAY.JP payments.js",
   "type": "module",
   "files": [
     "dist",
-    "./types/index.d.ts"
+    "types"
   ],
   "module": "./dist/payments-js.js",
   "types": "./types/index.d.ts",
