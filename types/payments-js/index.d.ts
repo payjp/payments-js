@@ -13,6 +13,8 @@ export interface PayjpPayments {
 
     retrievePaymentFlow(clientSecret: string): Promise<PaymentFlow>
     retrieveSetupFlow(clientSecret: string): Promise<SetupFlow>
+
+    handleNextAction(options: {clientSecret: string}): Promise<void>;
 }
 
 export type Locales = 'ja' | 'en'
