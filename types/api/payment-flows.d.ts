@@ -1,7 +1,4 @@
-/**
- * PaymentMethodTypes
- */
-export type PaymentMethodTypes = 'card' | 'paypay' | 'apple_pay';
+import type { PaymentMethodTypes } from '../payments-js/form/payment-form';
 
 /**
  * PaymentFlowResponse

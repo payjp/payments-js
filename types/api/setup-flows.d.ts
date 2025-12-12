@@ -1,4 +1,4 @@
-import type { PaymentMethodTypes } from './payment-flows';
+import type { PaymentMethodTypes } from '../payments-js/form/payment-form';
 
 /**
  * SetupFlowResponse
