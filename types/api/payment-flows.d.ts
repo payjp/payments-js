@@ -1,118 +1,154 @@
+/**
+ * PaymentMethodTypes
+ */
+export type PaymentMethodTypes = 'card' | 'paypay' | 'apple_pay';
+
+/**
+ * PaymentFlowResponse
+ */
 export type PaymentFlow = {
     /**
-    * Id
-     * @description 支払いフローID
+     * Id
+     *
+     * 支払いフローID
      */
     id: string;
     /**
      * Object
-     * @default payment_flow
-     * @constant
      */
-    object: "payment_flow";
+    object: 'payment_flow';
     /**
      * Created At
-     * Format: date-time
-     * @description 支払い方法作成時の日時(UTC)
+     *
+     * 作成日時 (UTC, ISO 8601 形式)
      */
     created_at: string;
     /**
      * Updated At
-     * Format: date-time
-     * @description 支払い方法更新時の日時(UTC)
+     *
+     * 更新日時 (UTC, ISO 8601 形式)
      */
     updated_at: string;
     /**
      * Livemode
-     * @description 本番環境かどうか
+     *
+     * 本番環境かどうか
      */
     livemode: boolean;
     /**
      * Amount
-     * @description 支払い金額
+     *
+     * 支払い予定の金額
      */
     amount: number;
     /**
      * Amount Capturable
-     * @description キャプチャ可能金額
+     *
+     * このPaymentFlowの確定可能な金額
      */
     amount_capturable: number | null;
     /**
      * Amount Received
-     * @description 受領金額
+     *
+     * このPaymentFlowの `amount` のうち、確定した金額
      */
     amount_received: number | null;
     /**
      * Client Secret
-     * @description クライアントシークレット
+     *
+     * このPaymentFlowのクライアントシークレットです。フロントエンドで公開APIキーと合わせて使用しPaymentFlowの情報を取得や支払い処理を行います。**この値はこのPaymentFlowの支払いを行う顧客以外へ公開しないでください。**また保存やログへの記録なども行わないでください。
      */
     client_secret: string;
     /**
-     * Confirmation Method
-     * @description 確認方法
+     * Customer Id
+     *
+     * このPaymentFlowに関連付けられた顧客のID
      */
-    confirmation_method: string | null;
-    /**
-     * Customer
-     * @description 顧客ID
-     */
-    customer?: string | null;
+    customer_id: string | null;
     /**
      * Description
-     * @description 説明
+     *
+     * オブジェクトにセットする任意の文字列。ユーザーには表示されません。
      */
-    description?: string | null;
+    description: string | null;
     /**
      * Metadata
-     * @description メタデータ
-     * @default {}
+     *
+     * メタデータ
      */
     metadata: {
         [key: string]: string | number | boolean;
     };
     /**
-    * Payment Method
-    * @description 支払い方法ID
-    */
-    payment_method?: string | null;
+     * Payment Method Id
+     *
+     * 支払い方法ID
+     */
+    payment_method_id: string | null;
     /**
      * Payment Method Options
-     * @description 支払い方法オプション
+     *
+     * このPaymentFlow固有の支払い方法の設定
      */
-    payment_method_options?: Record<string, never> | null;
+    payment_method_options: {
+        [key: string]: unknown;
+    } | null;
     /**
      * Payment Method Types
-     * @description 支払い方法の種類
+     *
+     * このPaymentFlowで使用できる支払い方法の種類のリスト
      */
-    payment_method_types: string[];
+    payment_method_types: Array<PaymentMethodTypes>;
     /**
-     * Receipt Email
-     * @description 領収書送付先メールアドレス
+     * このPaymentFlowのステータス。<a href="https://docs.pay.jp/v2/payment_flows#status" target="_blank">ステータスの詳細についてはこちらをご覧ください。</a>
+     *
+     * | 値 |
+     * |:---|
+     * | **requires_payment_method**: 支払い方法が必要です。 |
+     * | **requires_confirmation**: 確認が必要です。 |
+     * | **requires_action**: 顧客のアクションが必要です。 |
+     * | **processing**: 処理中です。 |
+     * | **requires_capture**: 確定が必要です。 |
+     * | **canceled**: キャンセルされました。 |
+     * | **succeeded**: 成功しました。 |
      */
-    receipt_email?: string | null;
-    /** @description 支払いステータス */
     status: PaymentFlowStatus;
     /**
      * Next Action
-     * @description 次のアクション
+     *
+     * プロパティが存在する場合、顧客が支払い設定を続けるために必要な対応が記載されています。
      */
-    next_action?: Record<string, never> | null;
+    next_action: {
+        [key: string]: unknown;
+    } | null;
     /**
      * Return Url
-     * @description リダイレクトURL
+     *
+     * 顧客が支払いを完了後かキャンセルした後にリダイレクトされるURL
      */
-    return_url?: string | null;
-    /** @description キャプチャ方法 */
+    return_url: string | null;
+    /**
+     * 支払いの確定方法
+     *
+     * | 指定できる値 |
+     * |:---|
+     * | **automatic**: (デフォルト) 顧客が支払いを承認すると、自動的に確定させます。 |
+     * | **manual**: 顧客が支払いを承認すると一旦確定を保留し、後で Capture API を使用して確定します。（すべての支払い方法がこれをサポートしているわけではありません）。 |
+     */
     capture_method: CaptureMethod;
+    /**
+     * Last Payment Error
+     *
+     * このPaymentFlowで発生した最後の支払いエラー
+     */
+    last_payment_error: {
+        [key: string]: unknown;
+    } | null;
 };
 
-export type PaymentFlowStatus =
-  | "canceled"
-  | "processing"
-  | "requires_action"
-  | "requires_capture"
-  | "requires_confirmation"
-  | "requires_payment_method"
-  | "succeeded";
+/**
+ * PaymentFlowStatus
+ */
+export type PaymentFlowStatus = 'canceled' | 'processing' | 'requires_action' | 'requires_capture' | 'requires_confirmation' | 'requires_payment_method' | 'succeeded';
 
-export type CaptureMethod = "automatic" | "manual";
+export type CaptureMethod = 'automatic' | 'manual';
