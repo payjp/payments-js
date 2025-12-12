@@ -1,4 +1,4 @@
-import { PayjpPaymentsError } from '..';
+import { Address, PayjpPaymentsError } from '..';
 
 export type ConfirmPaymentParams = {
     return_url: string;
@@ -7,6 +7,7 @@ export type ConfirmPaymentParams = {
             name?: string;
             email?: string;
             phone?: string;
+            address?: Address;
         };
     };
 }
