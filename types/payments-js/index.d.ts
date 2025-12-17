@@ -97,7 +97,10 @@ export type PayjpPaymentsErrorType =
  */
 export type PayjpPaymentErrorCode =
   | "card_declined"
+  | "expired_card"
+  | "invalid_cvc"
   | "processing_error"
+  | "invalid_expiration_date"
   | "three_d_secure_failed"
   | "test_card_on_livemode"
   | (string & {});
