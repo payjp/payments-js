@@ -70,7 +70,7 @@ export type PayjpValidationError = {
  *
  * エラーの種類に応じて適切なハンドリングを行ってください:
  *
- * - `"card_error"`: カードの支払い処理が失敗しました。利用者に別の支払い情報の入力を促してください。
+ * - `"payment_error"`: 支払い処理が失敗しました。利用者に別の支払い情報の入力を促してください。
  * - `"validation_error"`: 入力内容に問題があります。フォームにエラーメッセージが自動表示されるため、通常は追加の対応は不要です。
  * - `"api_error"`: APIリクエストでエラーが発生しました。`code` を確認し、実装の見直しまたは時間をおいた再試行を検討してください。
  * - `"sdk_error"`: SDKの使用方法に問題がある可能性があります。実装内容の再確認をお願いします。
@@ -79,7 +79,7 @@ export type PayjpValidationError = {
  * 将来の変更で新しい値が追加される可能性があるため、列挙されている以外の値も受け入れられる実装をしてください。
  */
 export type PayjpPaymentsErrorType =
-  | "card_error"
+  | "payment_error"
   | "validation_error"
   | "api_error"
   | "sdk_error"
@@ -89,7 +89,7 @@ export type PayjpPaymentsErrorType =
 /**
  * 支払いエラーコード
  *
- * `type: "card_error"` の場合に返されるエラーコードです。
+ * `type: "payment_error"` の場合に返されるエラーコードです。
  *
  * このエラーが発生した場合は、利用者に対して別の支払い情報の入力を促してください。
  *
@@ -180,8 +180,8 @@ export type PayjpUserErrorCode =
  * const { error } = await widgets.confirmPayment({ return_url: "..." });
  * if (error) {
  *   switch (error.type) {
- *     case "card_error":
- *       showMessage("お支払いに失敗しました。別のカードをお試しください。");
+ *     case "payment_error":
+ *       showMessage("お支払いに失敗しました。別の支払い情報をお試しください。");
  *       break;
  *     case "validation_error":
  *       // フォームにエラーが自動表示されるため、通常は追加の対応は不要です
@@ -210,7 +210,7 @@ export type PayjpPaymentsError = {
    * エラーの詳細を示すコードです。
    *
    * `type` の値によって返されるコードの種類が異なります:
-   * - `"card_error"` → `PayjpPaymentErrorCode`
+   * - `"payment_error"` → `PayjpPaymentErrorCode`
    * - `"validation_error"` → `PayjpValidationErrorCode`
    * - `"api_error"` → `PayjpApiErrorCode`
    * - `"sdk_error"` → `PayjpSdkErrorCode`
