@@ -11,6 +11,14 @@ export * from './setup-flows';
 export interface PayjpPayments {
     widgets(options?: PayjpWidgetsOptionsClientSecret): PayjpWidgets;
 
+    /**
+     * widget を画面上に表示せずに PaymentFlow を confirm します。
+     *
+     * 支払い方法は `confirmParams.payment_method_data.type` で指定します。
+     * widget に入力された支払い情報を使って confirm する場合は `PayjpWidgets.confirmPayment()` を使用してください。
+     */
+    confirmPayment(options: paymentFlows.ConfirmPaymentOptions): Promise<paymentFlows.PaymentFlowResult>;
+
     retrievePaymentFlow(clientSecret: string): Promise<PaymentFlow>
     retrieveSetupFlow(clientSecret: string): Promise<SetupFlow>
 
