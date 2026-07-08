@@ -3,7 +3,8 @@
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    // NOTE: ESNext.Disposable は @vitest/spy の型定義が参照する Disposable を解決するために必要
+    "lib": ["ES2020", "ESNext.Disposable", "DOM", "DOM.Iterable"],
     "skipLibCheck": false,
 
     /* Bundler mode */
