@@ -51,6 +51,21 @@ const result = await widgets.confirmPayment({ return_url: 'https://example.com/r
 const result = await widgets.confirmSetup({ return_url: 'https://example.com/return_url' })
 ```
 
+#### Widget を使わない Confirm
+
+一部の決済手段についてはユーザによる入力が必要ないため `clientSecret` と `confirmParams` を指定して `payments.confirmPayment()` を呼び出し、決済フォームの表示を省略して Confirm することができます。
+現在は `paypay` のみ対応しています。
+
+```typescript
+const result = await payments.confirmPayment({
+  clientSecret,
+  confirmParams: {
+    return_url: 'https://example.com/return_url',
+    payment_method_data: { type: 'paypay' },
+  },
+})
+```
+
 ## エラーハンドリング
 
 `confirmPayment()` や `confirmSetup()` は正常に処理が進むと画面遷移が発生します。
