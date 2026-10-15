@@ -28,8 +28,8 @@ export type PayjpPaymentForm = PayjpFormBase & {
   on(event: "focus", handler: () => void): void;
   on(event: "blur", handler: () => void): void;
   /**
-   * Form の読み込みに失敗したときに発火するイベントハンドラを登録します。
-   * 読み込みに失敗した後に登録した場合も、ハンドラはすぐに呼ばれます。
+   * Widgets のセッションを取得できず、Form を表示できないときに発火するイベントハンドラを登録します。
+   * 取得に失敗した後に登録した場合も、ハンドラは呼ばれます。
    */
   on(event: "loaderror", handler: (event: PayjpFormLoadErrorEvent) => void): void;
 

@@ -21,10 +21,14 @@ export type PayjpFormBase = {
 export type PayjpForm = PayjpPaymentForm | PayjpAddressForm;
 
 /**
- * Form の読み込みに失敗したときに渡されるイベントです。
+ * Widgets のセッションを取得できず、Form を表示できないときに渡されるイベントです。
  *
- * Widgets のセッションを取得できなかった場合、`error` は `{ type: "sdk_error", code: "session_not_loaded" }` になります。
- * Form は表示されないため、利用者にページの再読み込みを促してください。
+ * `error` は `{ type: "sdk_error", code: "session_not_loaded" }` です。
+ * 通信エラーなどで再試行しても取得できなかった場合のほか、client_secret が無効な場合にも発火します。
+ * Form の iframe 自体を読み込めなかった場合（CSP の設定漏れなど）は発火しません。
+ *
+ * 一時的な障害であれば再読み込みで解消するため、利用者にはページの再読み込みを促してください。
+ * 再読み込みしても解消しない場合は、client_secret が正しいか確認してください。
  */
 export type PayjpFormLoadErrorEvent = {
   error: PayjpPaymentsError;
