@@ -1,4 +1,4 @@
-import { PayjpFormBase } from ".";
+import { PayjpFormBase, PayjpFormLoadErrorEvent } from ".";
 
 export type PayjpPaymentForm = PayjpFormBase & {
   /**
@@ -27,6 +27,11 @@ export type PayjpPaymentForm = PayjpFormBase & {
   on(event: "ready", handler: () => void): void;
   on(event: "focus", handler: () => void): void;
   on(event: "blur", handler: () => void): void;
+  /**
+   * Form の読み込みに失敗したときに発火するイベントハンドラを登録します。
+   * 読み込みに失敗した後に登録した場合も、ハンドラはすぐに呼ばれます。
+   */
+  on(event: "loaderror", handler: (event: PayjpFormLoadErrorEvent) => void): void;
 
   /**
    * PaymentElement の状態が変化したときに発火するイベントハンドラを解除します。
@@ -43,6 +48,7 @@ export type PayjpPaymentForm = PayjpFormBase & {
   off(event: "ready", handler: () => void): void;
   off(event: "focus", handler: () => void): void;
   off(event: "blur", handler: () => void): void;
+  off(event: "loaderror", handler: (event: PayjpFormLoadErrorEvent) => void): void;
 }
 
 export type PaymentFormLayoutTypes = "tab" | "accordion";
